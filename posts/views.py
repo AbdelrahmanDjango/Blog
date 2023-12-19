@@ -15,7 +15,7 @@ from users.models import User
 from rest_framework.decorators import action
 
 class PostList(viewsets.ModelViewSet):
-        permission_classes = (permissions.IsAuthenticated,)
+        permission_classes = (IsAuthorOrReadOnly,)
         queryset = Post.objects.all()
         serializer_class = PostSerialzer
     # # Filter list posts for only auther (superuser).

@@ -6,9 +6,9 @@ from django.urls import reverse
 class User(AbstractUser):
     password = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=250, unique=True)
-    REQUIRED_FIELDS = ['password']
-    USERNAME_FIELD = 'username'
+    # username = models.CharField(max_length=250, unique=True)
+    # REQUIRED_FIELDS = ['password']
+    # USERNAME_FIELD = 'username'
     def __str__(self):
         return self.username
 
