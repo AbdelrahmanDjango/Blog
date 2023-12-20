@@ -8,10 +8,10 @@ class CommentSerializer(serializers.ModelSerializer):
     author = serializers.SerializerMethodField()
     class Meta:
         model = Comment
-        fields = ('author', 'body', 'created_at', 'parent')
+        fields = ('author', 'body', 'created_at')
         extra_kwargs = {
             'post' : {'write_only' : True,'required': False},
-            'parent' : {'required': False},
+            # 'parent' : {'required': False},
         }
     def get_author(self, obj):
         return obj.author.username
@@ -65,5 +65,3 @@ class UserSerializerPosts(serializers.ModelSerializer):
             'password': {'read_only': True},
             'username': {'read_only': True}
         }
-
-

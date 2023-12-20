@@ -25,7 +25,7 @@ class Post(models.Model):
 class Comment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
+    # parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -39,8 +39,4 @@ class Comment(models.Model):
         ]
     def __str__(self):
         return f'Commented by {self.author} on {self.post}'
-
-# class Followers(models.Model):
-#     name = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-#     follower = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 

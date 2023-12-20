@@ -6,7 +6,7 @@ from .serializers import (
     CommentSerializer,
     UserSerializer,
     UserSerializerPosts,
-    PostForUserSerializerPosts)
+    PostForUserSerializerPosts,)
 from .permissions import IsAuthorOrReadOnly
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -15,7 +15,7 @@ from users.models import User
 from rest_framework.decorators import action
 
 class PostList(viewsets.ModelViewSet):
-        permission_classes = (IsAuthorOrReadOnly,)
+        permission_classes = (permissions.IsAuthenticated,)
         queryset = Post.objects.all()
         serializer_class = PostSerialzer
     # # Filter list posts for only auther (superuser).
@@ -62,3 +62,4 @@ class UserPosts(viewsets.ModelViewSet):
     serializer_class = UserSerializerPosts
     def get_queryset(self):
         return User.objects.prefetch_related('userposts')
+
