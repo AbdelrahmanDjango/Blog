@@ -41,6 +41,13 @@ class PostSerialzer(serializers.ModelSerializer):
         #     raise serializers.ValidationError('Author must be specified.')
         # return Post.objects.create(author=author, **validated_data)
 
+# class ReplaySerializer(serializers.ModelSerializer):
+#     name = serializers.SerializerMethodField()
+#     class Meta:
+#         model = Replay
+#         fields = ('name', 'body')
+#     def get_name(self, obj):
+#         return obj.name.username
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

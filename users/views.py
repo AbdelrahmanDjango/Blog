@@ -97,8 +97,7 @@ class ProfileDetails(generics.ListAPIView):
 class ViewsProfile(APIView):
     def get(self, request, pk):
         profile = Profile.objects.get(id=pk)
-        # bio = profile.bio.replace('\r\n', '\n').replace('\n\n', '\n').replace('\r\r', '\n') if profile.bio else None
-        # profile.bio = bio
+
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
 

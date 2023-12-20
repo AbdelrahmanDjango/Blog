@@ -7,7 +7,7 @@ from .serializers import (
     UserSerializer,
     UserSerializerPosts,
     PostForUserSerializerPosts,)
-from .permissions import IsAuthorOrReadOnly
+from .permissions import IsAuthorOrReadOnly, IsAuthorOrReadOnlyUser
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from django.shortcuts import get_object_or_404
@@ -51,11 +51,15 @@ class CommentList(viewsets.ModelViewSet):
 #         queryset = Replay.objects.filter(comment_id=comment_id)
 #         return queryset
 
-class UserProfile(viewsets.ModelViewSet):
-    permission_classes = (permissions.IsAuthenticated,)
+class UserProfile(generics.ListAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
+
+class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthorOrReadOnlyUser,)
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
 
 class UserPosts(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated,]

@@ -19,4 +19,4 @@ class IsAuthorOrReadOnlyUser(permissions.BasePermission):
             return True
     # If not safe ways;
     # check if user that send request is the same author of post or not.
-        return obj.username == request.user
+        return obj.id == request.user.id
